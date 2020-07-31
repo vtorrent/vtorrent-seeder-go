@@ -1,0 +1,12 @@
+{
+ "Name": "vTorrent",
+ "Desc": "vTorrent Main Net",
+ "Id": "0x70350522",
+ "Port": 25524,
+ "Pver": 80016,
+ "DNSName": "seed.vtr.cloudns.asia",
+ "TTL": 600,
+ "Seeder1": "vtrseed.webredirect.org"
+ "Seeder2": "vtrseed.myddns.rocks"
+ "Seeder3": "vtrseed.cloudns.asia"
+}
