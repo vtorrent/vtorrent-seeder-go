@@ -26,7 +26,7 @@ Also see the associated utility to display information about [non-standard ip ad
 
 Simply use go get to download the code:
 
-    $ go get github.com/vtorrent/dnsseeder
+    $ go get github.com/vtorrent/vtorrent-seeder-go
 
 Dependencies are handled by the Go vendor directory.
 Note: This means the codebase requires Go 1.5 or higher and use of GO15VENDOREXPERIMENT=1
