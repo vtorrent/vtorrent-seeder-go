@@ -38,7 +38,7 @@ cd ${HOME}
 mkdir -p go/src/github.com/vtorrent
 cd go/src/github.com/vtorrent
 git clone the repo into this directory
-cd dnsseeder
+cd vtorrent-seeder-go
 go install
 
 ```
@@ -47,7 +47,7 @@ The binary will then be available in ${HOME}/go/bin
 
 ## Usage
 
-    $ dnsseeder -v -netfile <filename1,filename2>
+    $ vtorrent-seeder-go -v -netfile <filename1,filename2>
 
 An easy way to run the program is with tmux or screen. This enables you to log out and leave the program running.
 
@@ -81,9 +81,9 @@ gzip ${LOGDIR}/*.log
 
 cd
 echo
-echo "======= Run the Go Language dnsseed ======="
+echo "======= Run the Go Language vtorrent-seeder-go ======="
 echo
-${HOME}/go/bin/dnsseeder -p <dns.port.to.listen.on> -v -w 8880 -netfile ${1} 2>&1 | tee ${LOGDIR}/$(date +%F-%s)-goseeder.log
+${HOME}/go/bin/vtorrent-seeder-go -p <dns.port.to.listen.on> -v -w 8880 -netfile ${1} 2>&1 | tee ${LOGDIR}/$(date +%F-%s)-goseeder.log
 
 
 ```

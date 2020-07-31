@@ -58,8 +58,8 @@ func crawlIP(s *dnsseeder, r *result) ([]*wire.NetAddress, *crawlError) {
 	conn.SetDeadline(time.Now().Add(time.Second * maxTo))
 
 	meAddr, youAddr := conn.LocalAddr(), conn.RemoteAddr()
-	me := wire.NewNetAddress(meAddr.(*net.TCPAddr), wire.SFNodeNetwork)
-	you := wire.NewNetAddress(youAddr.(*net.TCPAddr), wire.SFNodeNetwork)
+	me, err := wire.NewNetAddress(meAddr.(*net.TCPAddr), wire.SFNodeNetwork)
+	you, err := wire.NewNetAddress(youAddr.(*net.TCPAddr), wire.SFNodeNetwork)
 	msgver := wire.NewMsgVersion(me, you, nounce, 0)
 
 	err = wire.WriteMessage(conn, msgver, s.pver, s.id)
