@@ -4,6 +4,7 @@
  "Id": "0x70350522",
  "Port": 22524,
  "Pver": 80016,
+ "BIP0031ver" : 80014,
  "DNSName": "seed.vtr.cloudns.asia",
  "TTL": 600,
  "Seeder1": "vtrseed.webredirect.org",

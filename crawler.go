@@ -71,6 +71,7 @@ func crawlIP(s *dnsseeder, r *result) ([]*wire.NetAddress, *crawlError) {
  	}
 	msgver := wire.NewMsgVersion(me, you, nounce, 0)
 	msgver.ProtocolVersion = int32(s.pver)
+	msgver.BIP0031Version = int32(s.bip0031ver)
 
 	err = wire.WriteMessage(conn, msgver, s.pver, s.id)
 	if err != nil {
