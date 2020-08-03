@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/btcsuite/btcd/wire"
@@ -59,8 +60,17 @@ func crawlIP(s *dnsseeder, r *result) ([]*wire.NetAddress, *crawlError) {
 
 	meAddr, youAddr := conn.LocalAddr(), conn.RemoteAddr()
 	me, err := wire.NewNetAddress(meAddr.(*net.TCPAddr), wire.SFNodeNetwork)
-	you, err := wire.NewNetAddress(youAddr.(*net.TCPAddr), wire.SFNodeNetwork)
+ 	if err != nil {
+ 		// Log and handle the error
+ 		return nil, &crawlError{"Invalid meAddr", err}
+ 	}
+ 	you, err := wire.NewNetAddress(youAddr.(*net.TCPAddr), wire.SFNodeNetwork)
+ 	if err != nil {
+ 		// Log and handle the error
+ 		return nil, &crawlError{"Invalid youAddr", err}
+ 	}
 	msgver := wire.NewMsgVersion(me, you, nounce, 0)
+	msgver.ProtocolVersion = int32(s.pver)
 
 	err = wire.WriteMessage(conn, msgver, s.pver, s.id)
 	if err != nil {
@@ -81,6 +91,9 @@ func crawlIP(s *dnsseeder, r *result) ([]*wire.NetAddress, *crawlError) {
 		if config.debug {
 			log.Printf("%s - debug - %s - Remote version: %v\n", s.name, r.node, msg.ProtocolVersion)
 		}
+		if !strings.Contains(msg.UserAgent, "vTorrent") {
+ 			return nil, &crawlError{"This Seeder is only designed for vTorrent usage", errors.New("")}
+ 		}
 		// fill the node struct with the remote details
 		r.version = msg.ProtocolVersion
 		r.services = msg.Services
