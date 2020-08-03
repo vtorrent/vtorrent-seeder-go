@@ -1,8 +1,8 @@
 {
  "Name": "vTorrent",
- "Desc": "vTorrent Main Net",
+ "Desc": "vTorrent Main Network",
  "Id": "0x70350522",
- "Port": 25524,
+ "Port": 22524,
  "Pver": 80016,
  "DNSName": "seed.vtr.cloudns.asia",
  "TTL": 600,
